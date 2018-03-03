@@ -33,7 +33,6 @@ int main()
    	    	del(s,i,k);
    	    }else i=k+1;
    	    l=strlen(s);
-   	    printf("i-->%d\n",i );
    	}
    	printf("%s",s);
  }
