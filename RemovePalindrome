@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+int getPos(char *s,int pos){
+	int i=pos;
+	while(s[i]!=' ' && s[i]!='\0') i++;
+	return i;
+}
+int palindrome(char *s,int start,int end){
+	while(start<end){
+		if(s[start] != s[end]) return 0; 
+		start++,end--;
+	}
+	return 1;
+}
+void del(char *s,int start,int end){
+	int l = strlen(s);
+	if(end==l) {
+		s[start]='\0';
+		return;
+	}
+	for(int i=start ; end<l ; i++){
+		s[i] = s[++end];
+	}
+}
+int main()
+{
+	char *s = (char*) malloc (1001);
+    scanf("%[^\n]",s);
+    int i=0,k,l=strlen(s);
+    while(i<l){
+   	    k = getPos(s,i);
+   	    if(palindrome(s,i,k-1)) {
+   	    	del(s,i,k);
+   	    }else i=k+1;
+   	    l=strlen(s);
+   	    printf("i-->%d\n",i );
+   	}
+   	printf("%s",s);
+ }
