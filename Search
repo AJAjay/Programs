@@ -1,0 +1,68 @@
+
+import java.io.*;
+import java.util.Scanner;
+public class Search {
+
+    public static void main(String[] args)
+    {
+		if (args. length == 0 ) {
+			throw new IllegalArgumentException( "No directory given to index." );
+		}	
+
+        File folder = new File(args[0]);
+        File[] files = folder.listFiles();
+        int len=folder.listFiles().length;
+        String name[]=new String[len];
+        Scanner sc = new Scanner(System. in );
+		//System.out.print(len);
+		while ( true )
+		{ 
+			System.out.print( "search> " );
+			final String toSearch = sc.nextLine();
+		   
+			String word[]=toSearch.split("");
+			int countLine = 0;
+			int count = 0;
+			int percentage=0;
+			boolean info[]=new boolean[word.length];
+			for (File file : files)
+			{
+				
+						   BufferedReader br = null;
+						   FileReader fr = null;
+
+		try {
+			fr = new FileReader(file.getPath());
+			br = new BufferedReader(fr);
+			String line;
+			while ((line = br.readLine())!= null)
+			{
+				
+				for(int g=0;g<word.length;g++)
+				{
+					if(line.equals(word[g]))
+					{
+						info[g]=true; 
+						count++;
+						System.out.println("count"+count);
+						percentage=(100/3)*count; // percentage = total number of search words that match in text file 
+						
+					}
+					else
+						{
+							info[g]=false;
+						}
+				}
+		  }    
+		} 
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	 //}
+		System.out.println(file.getPath());
+		System.out.println(percentage);
+	 }
+			}
+	}
+}
