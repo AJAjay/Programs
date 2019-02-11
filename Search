@@ -20,14 +20,15 @@ public class Search {
 			System.out.print( "search> " );
 			final String toSearch = sc.nextLine();
 		   
-			String word[]=toSearch.split("");
+			String word[]=toSearch.split(" ");// only split based on space.
 			int countLine = 0;
-			int count = 0;
-			int percentage=0;
+			int count;
+			float percentage;
 			boolean info[]=new boolean[word.length];
 			for (File file : files)
 			{
-				
+				count = 0;
+				percentage=0;
 						   BufferedReader br = null;
 						   FileReader fr = null;
 
@@ -35,25 +36,32 @@ public class Search {
 			fr = new FileReader(file.getPath());
 			br = new BufferedReader(fr);
 			String line;
-			while ((line = br.readLine())!= null)
+			while ((line = br.readLine())!= null) //loops every line in the text file
 			{
-				
-				for(int g=0;g<word.length;g++)
-				{
-					if(line.equals(word[g]))
-					{
-						info[g]=true; 
-						count++;
-						System.out.println("count"+count);
-						percentage=(100/3)*count; // percentage = total number of search words that match in text file 
-						
-					}
-					else
+				for(String word_in_files : line.split(" ")){ //for every words in the line
+ 					System.out.println(word_in_files);
+					for(int g=0;g<word.length;g++)
+					{	
+						System.out.println("-->"+word[g]);
+						if(word_in_files.equals(word[g]))
 						{
-							info[g]=false;
+							info[g]=true; 
+							count++;
+							System.out.println("count"+count);
+							//System.out.println("count"+count);
+							//percentage=(100/3)*count; // percentage = total number of search words that match in text file 
+							
 						}
+						else
+							{
+								info[g]=false;
+							}
+					}
 				}
-		  }    
+		  } 
+				
+				percentage = (count*100/word.length);
+				System.out.println(percentage);
 		} 
 		catch (IOException e)
 		{
