@@ -1,15 +1,5 @@
 
 
-#python is purly pass by reference
-'''def dict_updation_fun(dictionary,key_count):
-	dictionary[('key_'+str(key_count))] = key_count
-
-
-dict_ = {}
-for i in range(10):
-	dict_updation_fun(dict_,i)
-print(dict_)'''
-
 #search for a sequence to form sum
 
 def gen_sequence(sequence,target_number,existing_sequence):
