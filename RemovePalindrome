@@ -2,7 +2,7 @@
 #include <string.h>
 int getPos(char *s,int pos){
 	int i=pos;
-	while(s[i]!=' ' && s[i]!='\0') i++;
+	while(!isalpha(s[i]) && s[i]!='\0') i++;
 	return i;
 }
 int palindrome(char *s,int start,int end){
